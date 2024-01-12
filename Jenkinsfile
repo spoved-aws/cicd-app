@@ -50,10 +50,12 @@ pipeline {
 
         stage('Sonar Analysis') {
             environment {
+                scannerHome = tool "${SONARSCANNER}"
                 JAVA_HOME = '/opt/java/openjdk'
             }
             steps {
-                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
+                 withSonarQubeEnv("${SONARSERVER}") {
+                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
                    -Dsonar.projectName=spoved-sq-vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
@@ -61,6 +63,7 @@ pipeline {
                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+                 }
             }
         }
     }
