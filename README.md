@@ -1,2 +1,2 @@
 # cicd-app
-CICD pipelines to vproapp 
+CI pipelines to vproapp built using Jenkins
