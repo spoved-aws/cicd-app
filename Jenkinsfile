@@ -22,6 +22,9 @@ pipeline {
 
     stages {
         stage('Build') {
+            environment {
+                JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
+            }
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
             }
@@ -47,8 +50,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             environment {
-                scannerHome = tool "${SONARSCANNER}"
-                JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
+                JAVA_HOME = '/opt/java/openjdk'
             }
             steps {
                 sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
