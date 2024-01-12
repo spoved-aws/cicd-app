@@ -48,6 +48,7 @@ pipeline {
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
+                JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
             }
             steps {
                 sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
