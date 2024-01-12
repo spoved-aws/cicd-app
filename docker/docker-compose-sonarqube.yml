@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    ports:
+      - "9000:9000"
+    volumes:
+      - /Users/${USER}/docker/sonarqube/sonarqube_data:/opt/sonarqube/data
+      - /Users/${USER}/docker/sonarqube/sonarqube_logs:/opt/sonarqube/logs
+      - /Users/${USER}/docker/sonarqube/sonarqube_extensions:/opt/sonarqube/extensions

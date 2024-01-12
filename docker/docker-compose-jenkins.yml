@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:latest
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /Users/${USER}/docker/jenkins/jenkins:/var/jenkins_home
+    restart: on-failure
+
+volumes:
+  jenkins-data:
