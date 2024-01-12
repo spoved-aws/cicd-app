@@ -12,7 +12,7 @@ pipeline {
         RELEASE_REPO        = 'spoved-vprofile-release'
         CENTRAL_REPO        = 'spoved-vprofile-maven-central'
         NEXUS_IP            = 'localhost'
-        NEXUS_PORT          = '8081'
+        NEXUSPORT          = '8081'
         NEXUS_GRP_REPO      = 'spoved-vprofile-maven-group'
         NEXUS_LOGIN         = 'nexuslogin'
 
