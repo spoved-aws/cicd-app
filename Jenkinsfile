@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools{
+    tools {
         maven "Maven3"
         // jdk "OracleJDK8"
     }
@@ -26,7 +26,7 @@ pipeline {
                 JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
             }
             steps {
-                sh '''echo "JAVA_HOME is set to: $JAVA_HOME
+                sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
                 $JAVA_HOME/bin/java -version'''
                 sh 'mvn -s settings.xml -DskipTests install'
             }
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh '''echo "JAVA_HOME is set to: $JAVA_HOME
+                sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
                 $JAVA_HOME/bin/java -version'''
                 sh 'mvn -s settings.xml test'
             }
@@ -48,7 +48,8 @@ pipeline {
 
         stage('Checkstyle Analysis - Code Analysis') {
             steps {
-                sh '''echo "JAVA_HOME is set to: $JAVA_HOME
+                sh '''
+                echo "JAVA_HOME is set to: $JAVA_HOME"
                 $JAVA_HOME/bin/java -version'''
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
@@ -61,7 +62,8 @@ pipeline {
             }
             steps {
                  withSonarQubeEnv("${SONARSERVER}") {
-                    sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
+                    sh '''
+                    echo "JAVA_HOME is set to: $JAVA_HOME"
                     $JAVA_HOME/bin/java -version
                     ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
                    -Dsonar.projectName=spoved-sq-vprofile-repo \
