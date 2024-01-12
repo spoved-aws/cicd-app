@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools{
         maven "Maven3"
-        jdk "OracleJDK8"
+        // jdk "OracleJDK8"
     }
 
     environment {
@@ -26,6 +26,8 @@ pipeline {
                 JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
             }
             steps {
+                sh 'echo "JAVA_HOME is set to: $JAVA_HOME'
+                sh '$JAVA_HOME/bin/java -version'
                 sh 'mvn -s settings.xml -DskipTests install'
             }
             post {
@@ -38,12 +40,16 @@ pipeline {
 
         stage('Test') {
             steps {
+                sh 'echo "JAVA_HOME is set to: $JAVA_HOME'
+                sh '$JAVA_HOME/bin/java -version'
                 sh 'mvn -s settings.xml test'
             }
         }
 
         stage('Checkstyle Analysis - Code Analysis') {
             steps {
+                sh 'echo "JAVA_HOME is set to: $JAVA_HOME'
+                sh '$JAVA_HOME/bin/java -version'
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
