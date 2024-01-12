@@ -25,7 +25,7 @@
       <password>${NEXUS-PASS}</password>
     </server>
   </servers>
-
+<!-- suppose to be proxy but we grouped so we use this  -->
   <mirrors>
     <mirror>
       <id>${CENTRAL-REPO}</id>
