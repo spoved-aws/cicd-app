@@ -55,7 +55,9 @@ pipeline {
             }
             steps {
                  withSonarQubeEnv("${SONARSERVER}") {
-                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
+                    sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
+                    $JAVA_HOME/bin/java -version
+                    ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=spoved-sq-vprofile \
                    -Dsonar.projectName=spoved-sq-vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
