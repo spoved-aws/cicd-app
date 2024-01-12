@@ -11,7 +11,7 @@ pipeline {
         NEXUS_PASS          = 'nexus@123'
         RELEASE_REPO        = 'spoved-vprofile-release'
         CENTRAL_REPO        = 'spoved-vprofile-maven-central'
-        NEXUSIP             = 'localhost'
+        NEXUSIP             = '172.20.0.2'
         NEXUSPORT           = '8081'
         NEXUS_GRP_REPO      = 'spoved-vprofile-maven-group'
         NEXUS_LOGIN         = 'nexuslogin'
