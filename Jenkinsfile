@@ -113,8 +113,10 @@ pipeline {
                 )
             }
         }
+    }
 
-        post {
+    
+    post {
             always {
                 echo 'Slack Notifications.'
                 slackSend channel: '#ci-build-local',
@@ -122,5 +124,4 @@ pipeline {
                     message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} Build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
             }
         }
-    }
 }
