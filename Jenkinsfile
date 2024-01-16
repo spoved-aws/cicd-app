@@ -28,7 +28,7 @@ pipeline {
     stages {
         stage('Build') {
             environment {
-                JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
+                JAVA_HOME = '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
             }
             steps {
                 sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
