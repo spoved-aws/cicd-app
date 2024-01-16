@@ -63,7 +63,7 @@ pipeline {
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
-                JAVA_HOME = '/opt/java/openjdk'
+                JAVA_HOME = '/usr/lib/jvm/java-1.17.0-openjdk-amd64'
             }
             steps {
                  withSonarQubeEnv("${SONARSERVER}") {
