@@ -129,13 +129,10 @@ pipeline {
         stage('Push to GitHub Container Registry') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'githubtoken', variable: 'GHCR_TOKEN')]) {
-                        docker.withRegistry(env.GITHUB_REGISTRY, "ghcr.io") {
+                    docker.withRegistry('https://registry.github.com', 'githubtoken') {
                         // Push the Docker image to GitHub Container Registry
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
-                    }
-
                     }
                     
                 }
