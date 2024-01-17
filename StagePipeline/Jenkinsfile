@@ -24,8 +24,8 @@ pipeline {
         SONARSCANNER        = 'sonarscanner'
         // appRegistry         = 'spoved'
         GITHUB_TOKEN        = 'githubtoken'
-        GITHUB_REGISTRY     = 'kanukhosla10/vprofileappimg'
-        DOCKER_IMAGE        = 'kanukhosla10/vprofileappimg'
+        GITHUB_APP_REGISTRY = 'kanukhosla10/vprofileappimg'
+        GITHUB_REGISTRY     = 'https://docker.io/'
 
     }
 
@@ -121,7 +121,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build(env.GITHUB_REGISTRY + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+                    dockerImage = docker.build(env.GITHUB_APP_REGISTRY + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
                     }
                 }
         }
@@ -130,7 +130,7 @@ pipeline {
             steps {
                 script {
                     //def githubToken = 'dckr_pat_qW3F96ow9SZRryxFv5WYbrhixM8'
-                    docker.withRegistry("https://registry.hub.docker.com/", env.GITHUB_TOKEN) {
+                    docker.withRegistry(env.GITHUB_REGISTRY, env.GITHUB_TOKEN) {
                         // Push the Docker image to GitHub Container Registry
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
