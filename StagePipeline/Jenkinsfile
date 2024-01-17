@@ -129,7 +129,7 @@ pipeline {
         stage('Push to GitHub Container Registry') {
             steps {
                 script {
-                    docker.withRegistry(env.GITHUB_REGISTRY, env.GITHUB_TOKEN) {
+                    docker.withRegistry(env.GITHUB_REGISTRY, "${GITHUB_TOKEN}") {
                         // Push the Docker image to GitHub Container Registry
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
