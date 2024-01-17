@@ -23,7 +23,7 @@ pipeline {
         SONARSERVER         = 'sonarserver'
         SONARSCANNER        = 'sonarscanner'
         // appRegistry         = 'spoved'
-        GITHUB_TOKEN        = credentials('githubtoken')
+        // GITHUB_TOKEN        = credentials('githubtoken')
         GITHUB_REGISTRY     = 'ghcr.io/kanukhosla10/vprofileappimg'
         DOCKER_IMAGE        = 'kanukhosla10/vprofileappimg'
 
