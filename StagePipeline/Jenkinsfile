@@ -23,7 +23,7 @@ pipeline {
         SONARSERVER         = 'sonarserver'
         SONARSCANNER        = 'sonarscanner'
         // appRegistry         = 'spoved'
-        GITHUB_TOKEN        = 'githubtoken'
+        GITHUB_TOKEN        = credentials('githubtoken')
         GITHUB_REGISTRY     = 'ghcr.io/kanukhosla10/vprofileappimg'
         DOCKER_IMAGE        = 'kanukhosla10/vprofileappimg'
 
@@ -129,7 +129,7 @@ pipeline {
         stage('Push to GitHub Container Registry') {
             steps {
                 script {
-                    docker.withRegistry(env.GITHUB_REGISTRY, "${GITHUB_TOKEN}") {
+                    docker.withRegistry(env.GITHUB_REGISTRY, 'githubtoken') {
                         // Push the Docker image to GitHub Container Registry
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
