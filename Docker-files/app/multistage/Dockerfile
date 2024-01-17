@@ -1,7 +1,7 @@
 FROM openjdk:11 AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 RUN git clone https://github.com/spoved-aws/cicd-app.git
-RUN cd cicd-app && git checkout cicd-jenkins-local && mvn install
+RUN cd cicd-app && git checkout cicd-jenkins-local && mvn -s settings.xml -DskipTests install
 
 FROM tomcat:9-jre11
 
