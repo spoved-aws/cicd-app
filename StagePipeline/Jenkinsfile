@@ -129,8 +129,8 @@ pipeline {
         stage('Push to GitHub Container Registry') {
             steps {
                 script {
-                    def githubToken = 'dckr_pat_qW3F96ow9SZRryxFv5WYbrhixM8'
-                    docker.withRegistry('https://registry.github.com', githubToken) {
+                    //def githubToken = 'dckr_pat_qW3F96ow9SZRryxFv5WYbrhixM8'
+                    docker.withRegistry('https://registry.github.com', githubtoken) {
                         // Push the Docker image to GitHub Container Registry
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
