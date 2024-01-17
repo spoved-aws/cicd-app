@@ -16,19 +16,23 @@ pipeline {
         NEXUS_PASS          = 'nexus@123'
         RELEASE_REPO        = 'spoved-vprofile-release'
         CENTRAL_REPO        = 'spoved-vprofile-maven-central'
-        NEXUSIP             = '172.20.0.3'
+        NEXUSIP             = '172.20.20.20'
         NEXUSPORT           = '8081'
         NEXUS_GRP_REPO      = 'spoved-vprofile-maven-group'
         NEXUS_LOGIN         = 'nexuslogin'
         SONARSERVER         = 'sonarserver'
         SONARSCANNER        = 'sonarscanner'
+        // appRegistry         = 'spoved'
+        GITHUB_TOKEN        = 'githubtoken'
+        GITHUB_REGISTRY     = 'ghcr.io/kanukhosla10/vprofileappimg'
+        DOCKER_IMAGE        = 'kanukhosla10/vprofileappimg'
 
     }
 
     stages {
         stage('Build') {
             environment {
-                JAVA_HOME = '/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64'
+                JAVA_HOME = '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
             }
             steps {
                 sh '''echo "JAVA_HOME is set to: $JAVA_HOME"
@@ -63,7 +67,7 @@ pipeline {
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
-                JAVA_HOME = '/opt/java/openjdk'
+                JAVA_HOME = '/usr/lib/jvm/java-1.17.0-openjdk-amd64'
             }
             steps {
                  withSonarQubeEnv("${SONARSERVER}") {
@@ -94,7 +98,7 @@ pipeline {
             
         }
 
-        stage ('Upload Artiface to Nexus') {
+        stage('Upload Artiface to Nexus') {
             steps {
                 nexusArtifactUploader(
                 nexusVersion: 'nexus3',
@@ -111,6 +115,26 @@ pipeline {
                     type: 'war']
                     ]
                 )
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build(env.GITHUB_REGISTRY + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+                    }
+                }
+        }
+
+        stage('Push to GitHub Container Registry') {
+            steps {
+                script {
+                    docker.withRegistry(env.GITHUB_REGISTRY, env.GITHUB_TOKEN) {
+                        // Push the Docker image to GitHub Container Registry
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
             }
         }
     }
