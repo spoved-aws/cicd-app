@@ -25,7 +25,7 @@ pipeline {
         // appRegistry         = 'spoved'
         GITHUB_TOKEN        = 'githubtoken'
         GITHUB_APP_REGISTRY = 'kanukhosla10/vprofileappimg'
-        GITHUB_REGISTRY     = 'https://docker.io/'
+        GITHUB_REGISTRY     = 'https://registry.hub.docker.com/'
 
     }
 
