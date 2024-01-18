@@ -126,6 +126,13 @@ pipeline {
                 }
         }
 
+        stage('Check Kubectl Context') {
+            steps {
+                sh 'kubectl config current-context'
+                sh 'kubectl config get-contexts'
+            }
+        }
+
         stage('Push to GitHub Container Registry') {
             steps {
                 script {

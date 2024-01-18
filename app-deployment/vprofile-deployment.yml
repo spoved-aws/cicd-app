@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: vprofile-app
-        image: kanukhosla10/vprofileappimg
+        image: kanukhosla10/vprofileappimg:latest
         ports:
         - containerPort: 8080
