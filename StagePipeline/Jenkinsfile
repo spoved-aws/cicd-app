@@ -142,8 +142,8 @@ pipeline {
         stage('Deploy the app to Minikube') {
             steps {
                 script {
-                    sh 'kubectl apply -f ../app-deployment/vprofile-deployment.yml'
-                    sh 'kubectl apply -f ../app-deployment/vprofile-service.yml'
+                    sh 'kubectl apply -f app-deployment/vprofile-deployment.yml'
+                    sh 'kubectl apply -f app-deployment/vprofile-service.yml'
                 }
             }
         }
