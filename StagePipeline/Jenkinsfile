@@ -98,7 +98,7 @@ pipeline {
             
         // }
 
-        // stage('Upload Artiface to Nexus') {
+        // stage('Upload Artifact to Nexus') {
         //     steps {
         //         nexusArtifactUploader(
         //         nexusVersion: 'nexus3',
@@ -135,6 +135,15 @@ pipeline {
                         dockerImage.push('latest')
                     }
                     
+                }
+            }
+        }
+
+        stage('Deploy the app to Minikube') {
+            steps {
+                script {
+                    sh 'kubectl apply -f ../app-deployment/vprofile-deployment.yml'
+                    sh 'kubectl apply -f ../app-deployment/vprofile-service.yml'
                 }
             }
         }
