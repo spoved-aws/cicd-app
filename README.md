@@ -11,13 +11,13 @@ CD pipelines to vproapp built using Jenkins.
 4. Sonarqube running on docker container : accessed by localhost:9000
 5. Kubernetes cluster is running on MacOS as minikube with 1 node. 
 6. Install kubectl in jenkins.Requires to symlinks to connect to the cluster running on the host machine:
-   i. Mount /Users/macuser/.kube and  /Users/macuser/.minikube to the VM - this should come up in /media/psf/
-   ii. Create /home/jenkins from root.
-   iii. Create a password for the jenkins user.
-   iv. Add the *jenkins* user to the sudoer file.
-   v. Switch to the jenkins user and create a directory /User/macuser with sudo command.
-   vi. Create a sym link between the host .kube and .minikube directories.
-   vii. ln -s /media/psf/.kube /Users/macuser/
-   viii. ln -s /media/psf/.minikube /Users/macuser/
+   * Mount /Users/macuser/.kube and  /Users/macuser/.minikube to the VM - this should come up in /media/psf/.
+   * Create /home/jenkins from root.
+   * Create a password for the jenkins user.
+   * Add the *jenkins* user to the sudoer file.
+   * Switch to the jenkins user and create a directory /User/macuser with sudo command.
+   * Create a sym link between the host .kube and .minikube directories.
+   * ln -s /media/psf/.kube /Users/macuser/ ( --> this is the directory on ubuntu )
+   * ln -s /media/psf/.minikube /Users/macuser/
 
 
