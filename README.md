@@ -19,5 +19,6 @@ CD pipelines to vproapp built using Jenkins.
    * Create a sym link between the host .kube and .minikube directories.
    * ln -s /media/psf/.kube /Users/macuser/ ( --> this is the directory on ubuntu )
    * ln -s /media/psf/.minikube /Users/macuser/
+7. Faced issues while pushing the image to github using the docker workflow plugin. After many attempts was able to push the image using docker.withRegistry(env.GITHUB_REGISTRY, env.GITHUB_TOKEN). Important thing to remember here is that the token should be saved in jenkins as userid/password NOT just the secret text. 
 
 
