@@ -1,7 +1,7 @@
 FROM openjdk:11 AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 RUN git clone https://github.com/spoved-aws/cicd-app.git
-RUN cd cicd-app && git checkout cicd-jenkins-local && ls && mvn install -f pom-for-dockerfile.xml
+RUN cd cicd-app && git checkout cicd-jenkins-local && git pull && mvn install -f pom-for-dockerfile.xml
 CMD ["catalina.sh", "run"]
 
 FROM tomcat:9-jre11
