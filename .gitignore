@@ -1,0 +1,8 @@
+# Ignore terraform config directory
+terraform-manifests/.terraform
+terraform-manifests/terraform.tfstate
+terraform-manifests/terraform.tfstate.backup
+terraform-manifests/.terraform.lock.hcl
+
+# Ignore OS generated files
+.DS_Store
